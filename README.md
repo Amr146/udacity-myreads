@@ -4,7 +4,8 @@ This is An App wuich allows you to organize your books between 3 different shelf
 
 ## TL;DR
 
-To get started developing right away:
+To get started right away:
 
+- make sure you are in the starter directory
 - install all project dependencies with `npm install`
 - start the development server with `npm start`
