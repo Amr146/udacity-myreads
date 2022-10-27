@@ -1,12 +1,8 @@
 import BookShelf from './BookShelf';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import propTypes from 'prop-types';
 
 const BookList = ({ booksList, updateBooks }) => {
-	const [books, setBooks] = useState(booksList);
-	useEffect(() => {
-		setBooks(booksList);
-	}, [booksList]);
 	return (
 		<div className='list-books'>
 			<div className='list-books-title'>
@@ -16,17 +12,19 @@ const BookList = ({ booksList, updateBooks }) => {
 				<div>
 					<BookShelf
 						title='Currently Reading'
-						BookArr={books.filter((book) => book.shelf === 'currentlyReading')}
+						BookArr={booksList.filter(
+							(book) => book.shelf === 'currentlyReading'
+						)}
 						updateList={updateBooks}
 					/>
 					<BookShelf
 						title='Want to Read'
-						BookArr={books.filter((book) => book.shelf === 'wantToRead')}
+						BookArr={booksList.filter((book) => book.shelf === 'wantToRead')}
 						updateList={updateBooks}
 					/>
 					<BookShelf
 						title='Read'
-						BookArr={books.filter((book) => book.shelf === 'read')}
+						BookArr={booksList.filter((book) => book.shelf === 'read')}
 						updateList={updateBooks}
 					/>
 				</div>
@@ -34,6 +32,11 @@ const BookList = ({ booksList, updateBooks }) => {
 			<div className='open-search'>{<Link to='/search'>Add a book</Link>}</div>
 		</div>
 	);
+};
+
+BookList.propTypes = {
+	booksList: propTypes.array.isRequired,
+	updateBooks: propTypes.func.isRequired,
 };
 
 export default BookList;

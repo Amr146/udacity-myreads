@@ -1,9 +1,7 @@
-import { useState } from 'react';
+import propTypes from 'prop-types';
 
 const Book = ({ book, onBookUpdate }) => {
-	const [shelf, setShelf] = useState(book.shelf);
 	const updateShelf = (newShelf) => {
-		setShelf(newShelf);
 		onBookUpdate(book, newShelf);
 	};
 
@@ -25,7 +23,7 @@ const Book = ({ book, onBookUpdate }) => {
 				<div className='book-shelf-changer'>
 					<select
 						onChange={(event) => updateShelf(event.target.value)}
-						defaultValue={shelf}
+						defaultValue={book.shelf}
 					>
 						<option value='no' disabled>
 							Move to...
@@ -41,6 +39,11 @@ const Book = ({ book, onBookUpdate }) => {
 			<div className='book-authors'>{book.authors}</div>
 		</div>
 	);
+};
+
+Book.propTypes = {
+	book: propTypes.object.isRequired,
+	onBookUpdate: propTypes.func.isRequired,
 };
 
 export default Book;

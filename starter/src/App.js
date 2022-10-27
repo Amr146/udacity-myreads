@@ -15,12 +15,16 @@ function App() {
 	};
 	const updateBooks = async (book, newShelf) => {
 		await BooksAPI.update(book, newShelf);
-		getAllBooks();
+		book.shelf = newShelf;
+		const newBooks = books;
+		if (!newBooks.find((b) => b === book)) newBooks.push(book);
+		setBooks(newBooks);
+		console.log(newBooks);
 	};
 
 	useEffect(() => {
 		getAllBooks();
-	}, []);
+	}, [books]);
 	return (
 		<Routes>
 			<Route
@@ -32,6 +36,7 @@ function App() {
 				path='/search'
 				element={<SearchPage booksList={books} updateBooks={updateBooks} />}
 			/>
+			<Route path='*' element={<div>error 404: page was not</div>} />
 		</Routes>
 	);
 }

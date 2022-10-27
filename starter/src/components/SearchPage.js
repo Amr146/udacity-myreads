@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import propTypes from 'prop-types';
 import * as BooksAPI from '../BooksAPI';
 import BookShelf from './BookShelf';
 const SearchPage = ({ booksList, updateBooks }) => {
@@ -60,6 +61,11 @@ const SearchPage = ({ booksList, updateBooks }) => {
 			</div>
 		</div>
 	);
+};
+
+SearchPage.propTypes = {
+	booksList: propTypes.array.isRequired,
+	updateBooks: propTypes.func.isRequired,
 };
 
 export default SearchPage;

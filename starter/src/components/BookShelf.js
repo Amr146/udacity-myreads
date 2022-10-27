@@ -1,17 +1,13 @@
-import { useEffect, useState } from 'react';
+import propTypes from 'prop-types';
 import Book from './Book';
 const BookShelf = ({ title, BookArr, updateList }) => {
-	const [bookList, setBookList] = useState(BookArr);
-	useEffect(() => {
-		setBookList(BookArr);
-	}, [BookArr]);
 	return (
-		Array.isArray(bookList) && (
+		Array.isArray(BookArr) && (
 			<div className='bookshelf'>
 				<h2 className='bookshelf-title'>{title}</h2>
 				<div className='bookshelf-books'>
 					<ol className='books-grid'>
-						{bookList.map((book) => (
+						{BookArr.map((book) => (
 							<li key={book.id}>
 								<Book book={book} onBookUpdate={updateList} />
 							</li>
@@ -21,6 +17,12 @@ const BookShelf = ({ title, BookArr, updateList }) => {
 			</div>
 		)
 	);
+};
+
+BookShelf.propTypes = {
+	title: propTypes.string.isRequired,
+	BookArr: propTypes.array.isRequired,
+	updateList: propTypes.func.isRequired,
 };
 
 export default BookShelf;
