@@ -19,7 +19,6 @@ function App() {
 		const newBooks = books;
 		if (!newBooks.find((b) => b === book)) newBooks.push(book);
 		setBooks(newBooks);
-		console.log(newBooks);
 	};
 
 	useEffect(() => {
